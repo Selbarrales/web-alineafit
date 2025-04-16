@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AlineaFit</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    body { font-family: 'Poppins', sans-serif; transition: background 0.3s, color 0.3s; }
+    .dark-mode { background-color: #0D0D0D; color: #FAFAFA; }
+    .light-mode { background-color: #FAFAFA; color: #0D0D0D; }
+    .toast { position: fixed; top: 20px; right: 20px; background-color: #007BFF; color: white;
+             padding: 1rem 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+             opacity: 0; transition: opacity 0.5s ease-in-out; z-index: 9999; }
+    .toast.show { opacity: 1; }
+    .sidebar { position: fixed; top: 0; left: -250px; height: 100vh; width: 250px; background-color: #1a1a1a;
+               padding: 1.5rem; transition: left 0.3s ease; z-index: 10000; }
+    .sidebar.open { left: 0; }
+    .sidebar a { display: block; margin: 1rem 0; color: white; text-decoration: none; }
+    .loader { border: 4px solid #f3f3f3; border-top: 4px solid #007BFF; border-radius: 50%;
+              width: 36px; height: 36px; animation: spin 1s linear infinite; margin: auto; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  </style>
+</head>
+<body class="dark-mode">
+
+<!-- Panel lateral -->
+<button onclick="toggleSidebar()" class="fixed top-4 left-4 z-50 p-2 bg-gray-800 text-white rounded shadow">☰</button>
+<div id="sidebar" class="sidebar">
+  <button onclick="toggleSidebar()" class="text-white mb-4">✖ Cerrar</button>
+  <a href="#">Inicio</a>
+  <a href="#formAsesoria">Agendar</a>
+  <a href="#listaHistorial">Historial</a>
+  <a href="#">Rutinas</a>
+  <a href="#">Contacto</a>
+</div>
+
+<!-- Carrusel de portada -->
+<section class="relative w-full overflow-hidden mt-10">
+  <div id="carousel" class="flex transition-transform duration-1000 ease-in-out">
+    <img src="https://source.unsplash.com/1600x500/?fitness,1" class="w-full object-cover" alt="Imagen personalizada 1">
+    <img src="https://source.unsplash.com/1600x500/?fitness,2" class="w-full object-cover" alt="Imagen personalizada 2">
+  </div>
+  <button onclick="prevSlide()" class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white px-2 py-1 rounded-full">❮</button>
+  <button onclick="nextSlide()" class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white px-2 py-1 rounded-full">❯</button>
+  <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+    <span class="dot w-3 h-3 bg-white rounded-full opacity-50"></span>
+    <span class="dot w-3 h-3 bg-white rounded-full opacity-50"></span>
+  </div>
+</section>
+
+<!-- WhatsApp flotante -->
+<a href="https://wa.me/5215555555555" target="_blank" class="fixed bottom-4 right-4 z-50 p-3 bg-green-500 text-white rounded-full shadow-lg">
+  💬
+</a>
+
+<!-- Formulario -->
+<section class="p-6" id="formAsesoria">
+  <h2 class="text-2xl font-bold mb-4">Agendar Asesoría</h2>
+  <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <input placeholder="Nombre completo" required class="p-2 rounded bg-[#1a1a1a] text-white" />
+    <input placeholder="Teléfono" required class="p-2 rounded bg-[#1a1a1a] text-white" />
+    <input placeholder="Correo" required class="p-2 rounded bg-[#1a1a1a] text-white" />
+    <select class="p-2 rounded bg-[#1a1a1a] text-white"><option>Sexo</option></select>
+    <select class="p-2 rounded bg-[#1a1a1a] text-white"><option>Servicio</option></select>
+    <input type="date" class="p-2 rounded bg-[#1a1a1a] text-white" />
+    <input type="time" class="p-2 rounded bg-[#1a1a1a] text-white" />
+    <textarea rows="3" placeholder="Comentarios" class="col-span-full p-2 rounded bg-[#1a1a1a] text-white"></textarea>
+    <button type="submit" class="col-span-full mt-4 bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">Enviar</button>
+  </form>
+</section>
+
+<!-- Stripe Checkout -->
+<section class="p-6 text-center">
+  <h2 class="text-2xl font-bold mb-4">¿Prefieres pagar con Stripe?</h2>
+  <p class="mb-4">También puedes completar tu pago seguro con tarjeta de crédito o débito vía Stripe.</p>
+  <form action="https://checkout.stripe.com/pay/cs_test_YOUR_CHECKOUT_SESSION" method="GET" target="_blank">
+    <button type="submit" class="inline-flex items-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-indigo-500 transition">
+      <span class="material-icons">payment</span> Pagar con Stripe
+    </button>
+  </form>
+</section>
+
+<!-- Historial de rutinas -->
+<section class="p-6">
+  <h2 class="text-2xl font-bold mb-4">Historial de rutinas</h2>
+  <button onclick="mostrarHistorial()" class="bg-blue-700 text-white px-4 py-2 rounded shadow hover:bg-blue-600 transition">📋 Ver historial</button>
+  <ul id="listaHistorial" class="mt-4 space-y-2"></ul>
+</section>
+
+<script>
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+  }
+
+  const carousel = document.getElementById('carousel');
+  const dots = document.querySelectorAll('.dot');
+  let currentIndex = 0;
+  let totalSlides = carousel.children.length;
+
+  function showSlide(index) {
+    carousel.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('opacity-100', i === index);
+      dot.classList.toggle('opacity-50', i !== index);
+    });
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    showSlide(currentIndex);
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    showSlide(currentIndex);
+  }
+
+  setInterval(nextSlide, 5000);
+  showSlide(currentIndex);
+
+  function mostrarHistorial() {
+    const lista = document.getElementById('listaHistorial');
+    lista.innerHTML = '';
+    const historial = JSON.parse(localStorage.getItem('rutinas')) || [];
+    if (historial.length === 0) {
+      lista.innerHTML = '<li class="text-gray-400">No hay rutinas registradas.</li>';
+      return;
+    }
+    historial.forEach((item, index) => {
+      const li = document.createElement('li');
+      li.className = 'bg-gray-800 text-white p-3 rounded shadow';
+      li.innerHTML = `<strong>${index + 1}. ${item.nombre}</strong> - ${item.servicio} el ${item.fecha} a las ${item.hora}`;
+      lista.appendChild(li);
+    });
+  }
+</script>
+</body>
+</html>
