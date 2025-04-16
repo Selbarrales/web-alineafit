@@ -1,43 +1,96 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AlineaFit</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
-    <style>
-      body {
-        font-family: 'Poppins', sans-serif;
-        background: #0D0D0D;
-        color: #FAFAFA;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AlineaFit</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0D0D0D;
+      color: #FAFAFA;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    .contenedor {
+      max-width: 960px;
+      margin: auto;
+      padding: 2rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
 
-      img {
-        max-width: 100%;
-        border-radius: 12px;
-        margin-bottom: 20px;
-      }
+  <!-- Hero -->
+  <section class="contenedor">
+    <h1 class="text-3xl font-bold mb-4">Bienvenida a AlineaFit 💪</h1>
+    <p class="mb-6">Explora nuestros planes, portadas y conoce nuestra esencia visual.</p>
+    <img src="Portada1.png" alt="Portada Principal" />
+  </section>
 
-      .contenedor {
-        padding: 2rem;
-        max-width: 900px;
-        margin: auto;
-        text-align: center;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="contenedor">
-      <h1 class="text-3xl font-bold mb-4">Bienvenida a AlineaFit 💪</h1>
-      <p class="mb-6">Explora nuestros planes, portadas y conoce nuestra esencia visual.</p>
-
-      <img src="Portada1.png" alt="Portada Principal">
-      <img src="Portada2.png" alt="Portada Alternativa">
-      <img src="Planes-costos.png" alt="Tabla de precios">
-      <img src="Logotipo-alineafit.png" alt="Logo AlineaFit">
-
-      <p class="mt-10 text-center text-sm text-gray-400">Versión demo cargada desde GitHub Pages</p>
+  <!-- Planes -->
+  <section class="contenedor bg-gray-900 rounded-xl mt-10 p-8">
+    <h2 class="text-2xl font-semibold mb-6 text-blue-400">Planes de Entrenamiento</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-gray-800 p-4 rounded">
+        <h3 class="font-bold text-lg">Básico</h3>
+        <p class="text-sm my-2">Acceso a rutinas personalizadas</p>
+        <p class="text-2xl font-bold">$49</p>
+      </div>
+      <div class="bg-gray-800 p-4 rounded border-2 border-blue-400">
+        <h3 class="font-bold text-lg">Pro</h3>
+        <p class="text-sm my-2">Incluye asesoría + rutinas + seguimiento</p>
+        <p class="text-2xl font-bold">$99</p>
+      </div>
+      <div class="bg-gray-800 p-4 rounded">
+        <h3 class="font-bold text-lg">Elite</h3>
+        <p class="text-sm my-2">Todo el Pro + videollamadas semanales</p>
+        <p class="text-2xl font-bold">$149</p>
+      </div>
     </div>
-  </body>
+  </section>
+
+  <!-- Testimonios -->
+  <section class="contenedor mt-12">
+    <h2 class="text-2xl font-semibold mb-6 text-blue-400">Testimonios</h2>
+    <div class="grid md:grid-cols-2 gap-6 text-left">
+      <blockquote class="bg-gray-800 p-6 rounded">
+        <p class="italic">“Desde que empecé con AlineaFit, mi rutina tiene sentido. ¡Amo los planes!”</p>
+        <footer class="mt-2 text-sm text-gray-400">— Mariana F.</footer>
+      </blockquote>
+      <blockquote class="bg-gray-800 p-6 rounded">
+        <p class="italic">“Me motivan muchísimo. Los cambios físicos y mentales han sido brutales.”</p>
+        <footer class="mt-2 text-sm text-gray-400">— Jorge M.</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="contenedor mt-12">
+    <h2 class="text-2xl font-semibold mb-6 text-blue-400">Preguntas Frecuentes</h2>
+    <div class="text-left space-y-4">
+      <details class="bg-gray-800 p-4 rounded">
+        <summary class="font-semibold cursor-pointer">¿Necesito equipo para entrenar?</summary>
+        <p class="mt-2 text-sm">No, hay planes desde casa sin equipo. Aunque si tienes mancuernas, mejor.</p>
+      </details>
+      <details class="bg-gray-800 p-4 rounded">
+        <summary class="font-semibold cursor-pointer">¿Incluye asesoría personalizada?</summary>
+        <p class="mt-2 text-sm">Sí, en el plan Pro y Elite tienes asesoría directa con un coach.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="contenedor mt-16 text-sm text-gray-400 border-t border-gray-700 pt-4">
+    <p>&copy; 2025 AlineaFit. Todos los derechos reservados.</p>
+    <p class="mt-1">Versión demo cargada desde GitHub Pages</p>
+  </footer>
+
+</body>
 </html>
