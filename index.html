@@ -49,21 +49,40 @@
       background: #1f2937;
       padding: 20px;
       border-radius: 10px;
-      flex: 0 0 300px;
+      flex: 0 0 100%;
     }
-    .imc-result {
-      margin-top: 1rem;
-      font-weight: bold;
+    .testimonial-slider {
+      display: flex;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    .testimonial-wrapper {
+      display: flex;
+      width: 500%;
+      animation: slideTestimonials 20s infinite ease-in-out;
+    }
+    @keyframes slideTestimonials {
+      0% { transform: translateX(0); }
+      20% { transform: translateX(0); }
+      25% { transform: translateX(-100%); }
+      45% { transform: translateX(-100%); }
+      50% { transform: translateX(-200%); }
+      70% { transform: translateX(-200%); }
+      75% { transform: translateX(-300%); }
+      95% { transform: translateX(-300%); }
+      100% { transform: translateX(-400%); }
     }
   </style>
 </head>
 <body>
   <header class="fixed top-0 w-full bg-blue-500 text-white flex justify-between items-center px-6 py-3 shadow-md z-50">
     <div class="flex items-center space-x-2">
-      <img src="Logotipo-alineafit.png" alt="AlineaFit Logo" width="200">
+      <img src="Logotipo-alineafit.png" alt="AlineaFit Logo" width="100">
+      <span class="font-bold text-lg">AlineaFit</span>
     </div>
     <nav class="space-x-4 text-sm flex items-center">
-      <a href="#imc" class="hover:underline">Calculadora de IMC</a>
+      <a href="imc.html" class="hover:underline">Calculadora de IMC</a>
       <a href="#testimonios" class="hover:underline">Testimonios</a>
       <a href="#faq" class="hover:underline">FAQ</a>
       <a href="#contacto" class="hover:underline">Contacto</a>
@@ -72,62 +91,42 @@
   </header>
 
   <main class="pt-24">
-    <!-- SECCIÓN DE BIENVENIDA -->
-    <section class="bg-[#007BFF] text-white text-center py-10">
+    <!-- BIENVENIDA -->
+    <section class="text-center py-10">
       <h1 class="text-3xl font-bold mb-2">Bienvenida a AlineaFit 💪</h1>
       <p>Explora nuestros planes, portadas y conoce nuestra esencia visual.</p>
     </section>
 
-    <!-- CARRUSEL -->
-    <div class="carousel-container bg-black">
+    <!-- CARRUSEL DE 2 IMÁGENES -->
+    <div class="carousel-container">
       <div class="carousel-slide">
-        <img src="Portada1.png" alt="Portada Principal">
-        <img src="Portada2.png" alt="Portada Alternativa">
-        <img src="Planes-costos.png" alt="Tabla de precios">
+        <img src="Portada1.png" alt="Portada 1">
+        <img src="Portada2.png" alt="Portada 2">
       </div>
       <button class="prev">❮</button>
       <button class="next">❯</button>
     </div>
 
-    <!-- TESTIMONIOS -->
+    <!-- COSTOS -->
+    <section class="text-center mt-12">
+      <img src="Planes-costos.png" alt="Planes y Costos" class="mx-auto">
+    </section>
+
+    <!-- TESTIMONIOS AUTOMÁTICOS -->
     <section id="testimonios" class="bg-[#0c1224] py-12 text-white">
       <h2 class="text-3xl font-semibold mb-8 text-center">Lo que dicen nuestros clientes</h2>
-      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 px-6">
-        <div class="bg-[#1e2b3e] p-6 rounded">
-          <p class="italic">"Desde que empecé con AlineaFit, he notado cambios increíbles en mi energía y mi físico. La asesoría personalizada realmente hace la diferencia. ¡Estoy muy agradecida!"</p>
-          <p class="mt-4 text-blue-300 text-right italic">– Ana Pérez</p>
-        </div>
-        <div class="bg-[#1e2b3e] p-6 rounded">
-          <p class="italic">"El plan de entrenamiento y la guía nutricional que recibí fueron justo lo que necesitaba. Los resultados hablan por sí solos. ¡Recomiendo AlineaFit a cualquiera que busque un cambio real!"</p>
-          <p class="mt-4 text-blue-300 text-right italic">– Carlos López</p>
+      <div class="testimonial-slider">
+        <div class="testimonial-wrapper">
+          <div class="testimonial">“Desde que empecé con AlineaFit, mi rutina tiene sentido. ¡Amo los planes!”<br><span class="text-blue-300 italic">– Ana Pérez</span></div>
+          <div class="testimonial">“Me motivan muchísimo. Los cambios físicos y mentales han sido brutales.”<br><span class="text-blue-300 italic">– Jorge M.</span></div>
+          <div class="testimonial">“Resultados en 3 semanas. Increíble.”<br><span class="text-blue-300 italic">– Laura G.</span></div>
+          <div class="testimonial">“He bajado 5 kg y subido músculo con AlineaFit. Nunca me había sentido tan fuerte.”<br><span class="text-blue-300 italic">– Pedro C.</span></div>
+          <div class="testimonial">“La motivación es constante y los cambios reales. 100% recomendado.”<br><span class="text-blue-300 italic">– Karina L.</span></div>
         </div>
       </div>
-    </section>
-
-    <!-- CALCULADORA IMC -->
-    <section id="imc" class="mt-12 px-6">
-      <h2 class="text-2xl font-semibold mb-4 text-blue-400">Calculadora de IMC</h2>
-      <div class="bg-gray-800 p-4 rounded max-w-md mx-auto">
-        <input id="peso" type="number" placeholder="Peso en kg" class="mb-2 w-full p-2 rounded bg-gray-700 text-white">
-        <input id="altura" type="number" placeholder="Altura en cm" class="mb-2 w-full p-2 rounded bg-gray-700 text-white">
-        <button onclick="calcularIMC()" class="bg-blue-500 text-white px-4 py-2 rounded w-full">Calcular IMC</button>
-        <p id="resultado-imc" class="imc-result text-center mt-4"></p>
-      </div>
-    </section>
-
-    <!-- CONTACTO -->
-    <section id="contacto" class="mt-12 px-6">
-      <h2 class="text-2xl font-semibold mb-4 text-blue-400 text-center">Contáctanos</h2>
-      <form class="max-w-xl mx-auto bg-gray-800 p-6 rounded">
-        <input type="text" placeholder="Tu nombre" required class="w-full p-2 mb-4 bg-gray-700 text-white rounded">
-        <input type="email" placeholder="Correo electrónico" required class="w-full p-2 mb-4 bg-gray-700 text-white rounded">
-        <textarea placeholder="Tu mensaje" rows="4" required class="w-full p-2 mb-4 bg-gray-700 text-white rounded"></textarea>
-        <input type="submit" value="Enviar" class="bg-blue-500 cursor-pointer text-white px-4 py-2 rounded w-full">
-      </form>
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer class="mt-16 text-sm text-gray-400 border-t border-gray-700 pt-4 text-center">
     <p>&copy; 2025 AlineaFit. Todos los derechos reservados.</p>
     <p class="mt-1">Versión demo cargada desde GitHub Pages</p>
@@ -139,12 +138,10 @@
     </div>
   </footer>
 
-  <!-- WHATSAPP FLOAT -->
   <a href="https://wa.me/5570869985" target="_blank" class="fixed bottom-5 right-5 z-50">
     <img src="https://icongr.am/fontawesome/whatsapp.svg?size=48&color=25d366" alt="WhatsApp">
   </a>
 
-  <!-- JS FUNCIONALIDAD -->
   <script>
     const slide = document.querySelector('.carousel-slide');
     const images = document.querySelectorAll('.carousel-slide img');
@@ -161,14 +158,6 @@
       counter = (counter - 1 + images.length) % images.length;
       slide.style.transform = `translateX(-${counter * 100}%)`;
     });
-
-    function calcularIMC() {
-      const peso = parseFloat(document.getElementById('peso').value);
-      const altura = parseFloat(document.getElementById('altura').value) / 100;
-      if (!peso || !altura) return;
-      const imc = (peso / (altura * altura)).toFixed(2);
-      document.getElementById('resultado-imc').innerText = `Tu IMC es: ${imc}`;
-    }
   </script>
 </body>
 </html>
