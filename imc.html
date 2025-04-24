@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de IMC - AlineaFit</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0D0D0D;
+      color: #FAFAFA;
+    }
+    input, select {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      border: none;
+      background-color: #1f2937;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .result-box {
+      margin-top: 1rem;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body class="p-6">
+  <div class="max-w-xl mx-auto">
+    <h1 class="text-3xl font-bold text-center mb-6">Calculadora de IMC</h1>
+    <p class="mb-4 text-center text-gray-400">Calcula tu Índice de Masa Corporal de forma precisa con AlineaFit 💪</p>
+
+    <label for="peso">Peso (kg)</label>
+    <input type="number" id="peso" placeholder="Ej. 65">
+
+    <label for="altura">Altura (cm)</label>
+    <input type="number" id="altura" placeholder="Ej. 170">
+
+    <label for="edad">Edad</label>
+    <input type="number" id="edad" placeholder="Ej. 25">
+
+    <label for="sexo">Sexo</label>
+    <select id="sexo">
+      <option value="femenino">Femenino</option>
+      <option value="masculino">Masculino</option>
+      <option value="otro">Otro</option>
+    </select>
+
+    <button onclick="calcularIMC()" class="bg-blue-500 w-full py-2 rounded font-semibold">Calcular IMC</button>
+
+    <div id="resultado" class="result-box"></div>
+  </div>
+
+  <script>
+    function calcularIMC() {
+      const peso = parseFloat(document.getElementById('peso').value);
+      const alturaCm = parseFloat(document.getElementById('altura').value);
+      const edad = parseInt(document.getElementById('edad').value);
+      const sexo = document.getElementById('sexo').value;
+
+      if (!peso || !alturaCm || !edad) {
+        document.getElementById('resultado').innerText = 'Por favor, completa todos los campos';
+        return;
+      }
+
+      const altura = alturaCm / 100;
+      const imc = (peso / (altura * altura)).toFixed(2);
+
+      let interpretacion = '';
+      if (imc < 18.5) interpretacion = 'Bajo peso';
+      else if (imc < 24.9) interpretacion = 'Normal';
+      else if (imc < 29.9) interpretacion = 'Sobrepeso';
+      else interpretacion = 'Obesidad';
+
+      document.getElementById('resultado').innerHTML = `
+        Tu IMC es <span class="text-blue-400">${imc}</span><br>
+        Clasificación: <span class="text-yellow-300">${interpretacion}</span>
+      `;
+    }
+  </script>
+</body>
+</html>
