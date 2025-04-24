@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AlineaFit</title>
+  <title>AlineaFit - Asesorías Fitness</title>
+  <link rel="icon" href="Logotipo-alineafit.png" type="image/png" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -26,7 +27,7 @@
       margin: auto;
     }
     .navbar {
-      background-color: #007BFF;
+      background-color: #ffffff;
     }
     .carousel-container {
       overflow: hidden;
@@ -89,18 +90,32 @@
   </style>
 </head>
 <body>
-  <header class="fixed top-0 w-full navbar text-white flex justify-between items-center px-6 py-3 shadow-md z-50">
+  <header class="fixed top-0 w-full navbar text-black flex justify-between items-center px-6 py-3 shadow-md z-50">
     <div class="flex items-center space-x-2">
-      <img src="Logotipo-alineafit.png" alt="AlineaFit Logo" width="100">
+      <img src="Logotipo-alineafit.png" alt="AlineaFit Logo" width="60">
       <span class="font-bold text-lg">AlineaFit</span>
     </div>
-    <nav class="space-x-4 text-sm">
-      <a href="#planes" class="hover:underline">Planes</a>
+    <nav class="hidden md:flex space-x-4 text-sm items-center">
+      <a href="#imc" class="hover:underline">Calculadora de IMC</a>
       <a href="#testimonios" class="hover:underline">Testimonios</a>
       <a href="#faq" class="hover:underline">FAQ</a>
       <a href="#contacto" class="hover:underline">Contacto</a>
+      <a href="#agenda" class="bg-blue-600 text-white font-semibold py-1 px-3 rounded-full hover:bg-blue-700 transition">¡Agenda ya!</a>
     </nav>
+    <div class="md:hidden">
+      <button id="menu-btn" class="text-black focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
   </header>
+  <div id="mobile-menu" class="hidden md:hidden bg-white text-black px-6 py-4 space-y-2">
+    <a href="#faq" class="block">Preguntas frecuentes</a>
+    <a href="#testimonios" class="block">Testimonios</a>
+    <a href="#entrenamiento" class="block">Entrenamiento personalizado</a>
+    <a href="#dieta" class="block">Dieta personalizada en base a tus objetivos</a>
+  </div>
 
   <main class="contenedor pt-24">
     <h1 class="text-3xl font-bold mb-4 text-center">Bienvenida a AlineaFit 💪</h1>
@@ -122,6 +137,8 @@
         <div class="testimonial">“Desde que empecé con AlineaFit, mi rutina tiene sentido. ¡Amo los planes!”</div>
         <div class="testimonial">“Me motivan muchísimo. Los cambios físicos y mentales han sido brutales.”</div>
         <div class="testimonial">“Resultados en 3 semanas. Increíble.”</div>
+        <div class="testimonial">“El plan de entrenamiento y la guía nutricional que recibí fueron justo lo que necesitaba. Los resultados hablan por sí solos. ¡Recomiendo AlineaFit a cualquiera que busque un cambio real!”<br><span class="block mt-2 text-right text-sm text-blue-300">– Carlos López</span></div>
+        <div class="testimonial">“Desde que empecé con AlineaFit, he notado cambios increíbles en mi energía y mi físico. La asesoría personalizada realmente hace la diferencia. ¡Estoy muy agradecido!”<br><span class="block mt-2 text-right text-sm text-blue-300">– Ana Pérez</span></div>
       </div>
     </section>
 
@@ -179,6 +196,11 @@
     prevBtn.addEventListener('click', () => {
       counter = (counter - 1 + images.length) % images.length;
       slide.style.transform = `translateX(-${counter * 100}%)`;
+    });
+
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
     });
   </script>
 </body>
