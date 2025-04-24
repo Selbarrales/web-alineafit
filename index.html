@@ -9,83 +9,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Poppins', sans-serif;
       background: #0D0D0D;
       color: #FAFAFA;
     }
-    img {
-      max-width: 100%;
-      border-radius: 12px;
-    }
-    .contenedor {
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
-    }
-    .navbar {
-      background-color: #ffffff;
-    }
-    .carousel-container {
-      overflow: hidden;
-      position: relative;
-      width: 100%;
-      max-width: 900px;
-      margin: 40px auto;
-      border-radius: 12px;
-    }
-    .carousel-slide {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
-    .carousel-slide img {
-      width: 100%;
-      flex-shrink: 0;
-    }
-    .prev, .next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.5);
-      color: white;
-      border: none;
-      padding: 10px;
-      font-size: 24px;
-      cursor: pointer;
-      z-index: 1;
-    }
-    .prev { left: 10px; }
-    .next { right: 10px; }
-    .testimonials {
-      display: flex;
-      overflow-x: auto;
-      gap: 20px;
-      padding: 20px 0;
-    }
-    .testimonial {
-      background: #1f2937;
-      padding: 20px;
-      border-radius: 10px;
-      flex: 0 0 300px;
-    }
-    form {
-      max-width: 600px;
-      margin: 40px auto;
-      background: #1f2937;
-      padding: 20px;
-      border-radius: 10px;
-    }
+    img { max-width: 100%; border-radius: 12px; }
+    .contenedor { padding: 2rem; max-width: 900px; margin: auto; }
+    .navbar { background-color: #ffffff; }
+    .carousel-container { overflow: hidden; position: relative; width: 100%; max-width: 900px; margin: 40px auto 0; border-radius: 12px; }
+    .carousel-slide { display: flex; transition: transform 0.5s ease-in-out; }
+    .carousel-slide img { width: 100%; flex-shrink: 0; }
+    .testimonials { position: relative; height: 200px; overflow: hidden; }
+    .testimonial { position: absolute; opacity: 0; transition: opacity 1s ease-in-out; background: #1f2937; padding: 20px; border-radius: 10px; width: 100%; }
+    .testimonial.active { opacity: 1; position: relative; }
+    form { max-width: 600px; margin: 40px auto; background: #1f2937; padding: 20px; border-radius: 10px; }
     input, textarea {
-      width: 100%;
-      margin: 10px 0;
-      padding: 12px;
-      border-radius: 8px;
-      border: none;
-      background: #2d3748;
-      color: white;
+      width: 100%; margin: 10px 0; padding: 12px; border-radius: 8px; border: none; background: #2d3748; color: white;
     }
   </style>
 </head>
@@ -96,11 +37,11 @@
       <span class="font-bold text-lg">AlineaFit</span>
     </div>
     <nav class="hidden md:flex space-x-4 text-sm items-center">
-      <a href="#imc" class="hover:underline">Calculadora de IMC</a>
+      <a href="imc.html" class="hover:underline">Calculadora de IMC</a>
       <a href="#testimonios" class="hover:underline">Testimonios</a>
       <a href="#faq" class="hover:underline">FAQ</a>
-      <a href="#contacto" class="hover:underline">Contacto</a>
-      <a href="#agenda" class="bg-blue-600 text-white font-semibold py-1 px-3 rounded-full hover:bg-blue-700 transition">¡Agenda ya!</a>
+      <a href="contacto.html" class="hover:underline">Contáctanos</a>
+      <a href="https://wa.me/5570869985" target="_blank" class="bg-blue-600 text-white font-semibold py-1 px-3 rounded-full hover:bg-blue-700 transition">¡Agenda ya!</a>
     </nav>
     <div class="md:hidden">
       <button id="menu-btn" class="text-black focus:outline-none">
@@ -122,25 +63,24 @@
     <p class="mb-6 text-center">Explora nuestros planes, portadas y conoce nuestra esencia visual.</p>
 
     <div class="carousel-container">
-      <div class="carousel-slide">
+      <div class="carousel-slide" id="carousel">
         <img src="Portada1.png" alt="Portada Principal">
         <img src="Portada2.png" alt="Portada Alternativa">
-        <img src="Planes-costos.png" alt="Tabla de precios">
       </div>
-      <button class="prev">&#10094;</button>
-      <button class="next">&#10095;</button>
     </div>
+
+    <img src="Planes-costos.png" alt="Tabla de precios" class="mt-12 rounded shadow-lg">
 
     <section id="testimonios" class="mt-12">
       <h2 class="text-2xl font-semibold mb-4 text-blue-400">Testimonios</h2>
-      <div class="testimonials">
-        <div class="testimonial">“Desde que empecé con AlineaFit, mi rutina tiene sentido. ¡Amo los planes!”</div>
-        <div class="testimonial">“Me motivan muchísimo. Los cambios físicos y mentales han sido brutales.”</div>
-        <div class="testimonial">“Resultados en 3 semanas. Increíble.”</div>
+      <div class="testimonials" id="testimonios-carousel">
+        <div class="testimonial active">“Desde que empecé con AlineaFit, mi rutina tiene sentido. ¡Amo los planes!”</div>
         <div class="testimonial">“El plan de entrenamiento y la guía nutricional que recibí fueron justo lo que necesitaba. Los resultados hablan por sí solos. ¡Recomiendo AlineaFit a cualquiera que busque un cambio real!”<br><span class="block mt-2 text-right text-sm text-blue-300">– Carlos López</span></div>
         <div class="testimonial">“Desde que empecé con AlineaFit, he notado cambios increíbles en mi energía y mi físico. La asesoría personalizada realmente hace la diferencia. ¡Estoy muy agradecido!”<br><span class="block mt-2 text-right text-sm text-blue-300">– Ana Pérez</span></div>
       </div>
     </section>
+
+    
 
     <section id="faq" class="mt-12">
       <h2 class="text-2xl font-semibold mb-4 text-blue-400">Preguntas Frecuentes</h2>
@@ -152,16 +92,6 @@
         <summary class="font-semibold cursor-pointer"><i class="fas fa-user-check mr-2"></i>¿Incluye asesoría personalizada?</summary>
         <p class="mt-2 text-sm">Sí, en el plan Pro y Élite tienes asesoría directa con un coach.</p>
       </details>
-    </section>
-
-    <section id="contacto" class="mt-12">
-      <h2 class="text-2xl font-semibold mb-4 text-blue-400 text-center">Contáctanos</h2>
-      <form>
-        <input type="text" placeholder="Tu nombre" required>
-        <input type="email" placeholder="Correo electrónico" required>
-        <textarea placeholder="Tu mensaje" rows="4" required></textarea>
-        <input type="submit" value="Enviar" class="bg-blue-500 cursor-pointer">
-      </form>
     </section>
   </main>
 
@@ -181,27 +111,40 @@
   </a>
 
   <script>
-    const slide = document.querySelector('.carousel-slide');
-    const images = document.querySelectorAll('.carousel-slide img');
-    const prevBtn = document.querySelector('.prev');
-    const nextBtn = document.querySelector('.next');
+    const carousel = document.getElementById('carousel');
+    let slideIndex = 0;
+    setInterval(() => {
+      slideIndex = (slideIndex + 1) % 2;
+      carousel.style.transform = `translateX(-${slideIndex * 100}%)`;
+    }, 4000);
 
-    let counter = 0;
-
-    nextBtn.addEventListener('click', () => {
-      counter = (counter + 1) % images.length;
-      slide.style.transform = `translateX(-${counter * 100}%)`;
-    });
-
-    prevBtn.addEventListener('click', () => {
-      counter = (counter - 1 + images.length) % images.length;
-      slide.style.transform = `translateX(-${counter * 100}%)`;
-    });
+    const testis = document.querySelectorAll('#testimonios-carousel .testimonial');
+    let tIndex = 0;
+    setInterval(() => {
+      testis.forEach(t => t.classList.remove('active'));
+      testis[tIndex].classList.add('active');
+      tIndex = (tIndex + 1) % testis.length;
+    }, 5000);
 
     document.getElementById('menu-btn').addEventListener('click', () => {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
+      document.getElementById('mobile-menu').classList.toggle('hidden');
     });
+
+    function calcularIMC() {
+      const peso = parseFloat(document.getElementById('peso').value);
+      const altura = parseFloat(document.getElementById('altura').value) / 100;
+      if (!peso || !altura) {
+        document.getElementById('resultadoIMC').textContent = 'Por favor, ingresa peso y altura válidos.';
+        return;
+      }
+      const imc = peso / (altura * altura);
+      let mensaje = `Tu IMC es ${imc.toFixed(2)} - `;
+      if (imc < 18.5) mensaje += "Bajo peso";
+      else if (imc < 24.9) mensaje += "Peso saludable";
+      else if (imc < 29.9) mensaje += "Sobrepeso";
+      else mensaje += "Obesidad";
+      document.getElementById('resultadoIMC').textContent = mensaje;
+    }
   </script>
 </body>
 </html>
