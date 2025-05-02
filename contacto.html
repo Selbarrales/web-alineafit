@@ -44,13 +44,13 @@
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       const formData = new FormData(form);
-      fetch("https://script.google.com/macros/s/AKfycbxzZ9Lt5IBbcXwqsgkQrZJQy6YoYsOlTNasDt8-rOfGyx59ifmlAKy_xKry4ygBHGugTg/exec", {
+      fetch("https://script.google.com/macros/s/AKfycbyVz_gmZTnr0UsEn6R7iA1tOihkhWSsf7PDBqXYCS1UEUsWxqTt_mQ5jIRdt0nrUO4T/exec", {
         method: 'POST',
         body: formData
       })
-      .then(res => res.text())
+      .then(res => res.json())
       .then(response => {
-        document.getElementById('formStatus').textContent = "Respuesta del servidor: " + text;
+        document.getElementById('formStatus').textContent = "✅ ¡Formulario enviado con éxito! Gracias por confiar en AlineaFit 💪✨";
         document.getElementById('formStatus').className = "text-green-400 text-sm mt-4";
         form.reset();
       })
