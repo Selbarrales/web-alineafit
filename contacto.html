@@ -1,5 +1,137 @@
 
-<section id="contacto" class="mt-12 text-center">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AlineaFit - Asesorías en línea 100% efectivas</title>
+  <link rel="icon" href="Logotipo-alineafit.png" type="image/png" />
+
+  <!-- Metadatos para redes sociales (Open Graph) -->
+  <meta property="og:title" content="AlineaFit - Asesorías fitness personalizadas" />
+  <meta property="og:description" content="Transforma tu cuerpo con rutinas claras, cálculo de IMC y contacto directo vía WhatsApp." />
+  <meta property="og:image" content="https://raw.githubusercontent.com/Selbarrales/web-alineafit/main/Logotipo.png" />
+  <meta property="og:url" content="https://selbarrales.github.io/web-alineafit/" />
+  <meta property="og:type" content="website" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0D0D0D;
+      color: #FAFAFA;
+    }
+    img { max-width: 100%; border-radius: 12px; }
+    .contenedor { padding: 2rem; max-width: 900px; margin: auto; }
+    .navbar { background-color: #ffffff; }
+    .carousel-container { overflow: hidden; position: relative; width: 100%; max-width: 900px; margin: 40px auto 0; border-radius: 12px; }
+    .carousel-slide { display: flex; transition: transform 0.5s ease-in-out; }
+    .carousel-slide img { width: 100%; flex-shrink: 0; }
+    .testimonials { position: relative; height: 200px; overflow: hidden; }
+    .testimonial { position: absolute; opacity: 0; transition: opacity 1s ease-in-out; background: #1f2937; padding: 20px; border-radius: 10px; width: 100%; }
+    .testimonial.active { opacity: 1; position: relative; }
+    form { max-width: 600px; margin: 40px auto; background: #1f2937; padding: 20px; border-radius: 10px; }
+    input, textarea {
+      width: 100%; margin: 10px 0; padding: 12px; border-radius: 8px; border: none; background: #2d3748; color: white;
+    }
+  </style>
+</head>
+<body>
+  <header class="fixed top-0 w-full navbar text-black flex justify-between items-center px-6 py-3 shadow-md z-50">
+    <div class="flex items-center space-x-2">
+      <img src="Logotipo-alineafit.png" alt="AlineaFit Logo" width="60">
+      <span class="font-bold text-lg">AlineaFit</span>
+    </div>
+    <nav class="hidden md:flex space-x-4 text-sm items-center">
+      <a href="imc.html" class="hover:underline">Calculadora de IMC</a>
+      <a href="#testimonios" class="hover:underline">Testimonios</a>
+      <a href="#valores" class="hover:underline">Valores</a>
+      <a href="#faq" class="hover:underline">FAQ</a>
+      <a href="contacto.html" class="hover:underline">Contáctanos</a>
+      <a href="https://wa.me/5570869985" target="_blank" class="bg-blue-600 text-white font-semibold py-1 px-3 rounded-full hover:bg-blue-700 transition">¡Agenda ya!</a>
+    <a href="#contacto" class="hover:underline">Emiliano – Contáctanos</a>
+</nav>
+    <div class="md:hidden">
+      <button id="menu-btn" class="text-black focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+  <div id="mobile-menu" class="hidden md:hidden bg-white text-black px-6 py-4 space-y-2">
+    <a href="#faq" class="block">Preguntas frecuentes</a>
+    <a href="#testimonios" class="block">Testimonios</a>
+    <a href="#valores" class="block">Valores</a>
+    <a href="#entrenamiento" class="block">Entrenamiento personalizado</a>
+    <a href="#dieta" class="block">Dieta personalizada en base a tus objetivos</a>
+  </div>
+
+  <main class="contenedor pt-24">
+    <h1 class="text-3xl font-bold mb-4 text-center">Bienvenida a AlineaFit 💪</h1>
+    <p class="mb-6 text-center">Explora nuestros planes, portadas y conoce nuestra esencia visual.</p>
+
+    <div class="carousel-container">
+      <div class="carousel-slide" id="carousel">
+        <img src="Portada1.png" alt="Portada Principal">
+        <img src="Portada2.png" alt="Portada Alternativa">
+      </div>
+    </div>
+
+    <img src="Planes-costos.png" alt="Tabla de precios" class="mt-12 rounded shadow-lg">
+
+    <section id="testimonios" class="mt-12">
+      <h2 class="text-2xl font-semibold mb-4 text-blue-400">Testimonios</h2>
+      <div class="testimonials" id="testimonios-carousel">
+        <div class="testimonial active">“Desde que empecé con AlineaFit, mi rutina tiene sentido. ¡Amo los planes!”</div>
+        <div class="testimonial">“El plan de entrenamiento y la guía nutricional que recibí fueron justo lo que necesitaba. Los resultados hablan por sí solos. ¡Recomiendo AlineaFit a cualquiera que busque un cambio real!”<br><span class="block mt-2 text-right text-sm text-blue-300">– Carlos López</span></div>
+        <div class="testimonial">“Desde que empecé con AlineaFit, he notado cambios increíbles en mi energía y mi físico. La asesoría personalizada realmente hace la diferencia. ¡Estoy muy agradecido!”<br><span class="block mt-2 text-right text-sm text-blue-300">– Ana Pérez</span></div>
+      </div>
+    </section>
+
+    <section id="valores" class="mt-12">
+      <h2 class="text-2xl font-semibold mb-4 text-pink-400">Nuestros Valores</h2>
+      <div class="space-y-3 text-sm leading-relaxed bg-gray-800 p-6 rounded-lg shadow-lg">
+        <p><strong>Disciplina:</strong> La base de todo cambio real.</p>
+        <p><strong>Empatía:</strong> Cada cuerpo y proceso es diferente.</p>
+        <p><strong>Compromiso:</strong> Me involucro contigo en cada paso.</p>
+        <p><strong>Autenticidad:</strong> No hay filtros ni promesas falsas.</p>
+        <p><strong>Salud integral:</strong> Mente, cuerpo y emociones en equilibrio.</p>
+        <p><strong>Evidencia y ciencia:</strong> Mis rutinas están basadas en conocimientos reales, no tendencias vacías.</p>
+        <p><strong>Resiliencia:</strong> Aprendemos de los días difíciles, no solo de los buenos.</p>
+      </div>
+    </section>
+
+    <section id="mision" class="mt-12">
+      <h2 class="text-2xl font-semibold mb-4 text-pink-400">Misión</h2>
+      <p class="bg-gray-800 p-6 rounded-lg shadow-lg text-sm leading-relaxed">
+        Acompañarte a lograr tu mejor versión física y emocional con rutinas personalizadas y seguimiento realista.
+      </p>
+    </section>
+
+    <section id="vision" class="mt-12">
+      <h2 class="text-2xl font-semibold mb-4 text-pink-400">Visión</h2>
+      <p class="bg-gray-800 p-6 rounded-lg shadow-lg text-sm leading-relaxed">
+        Que AlineaFit sea tu espacio seguro, libre de juicios, donde aprenderás a amarte, cuidarte y superarte cada día.
+      </p>
+    </section>
+
+    <section id="faq" class="mt-12">
+      <h2 class="text-2xl font-semibold mb-4 text-blue-400">Preguntas Frecuentes</h2>
+      <details class="bg-gray-800 p-4 rounded mb-4">
+        <summary class="font-semibold cursor-pointer"><i class="fas fa-dumbbell mr-2"></i>¿Necesito equipo para entrenar?</summary>
+        <p class="mt-2 text-sm">No, hay planes desde casa sin equipo. Aunque si tienes mancuernas, mejor.</p>
+      </details>
+      <details class="bg-gray-800 p-4 rounded">
+        <summary class="font-semibold cursor-pointer"><i class="fas fa-user-check mr-2"></i>¿Incluye asesoría personalizada?</summary>
+        <p class="mt-2 text-sm">Sí, en el plan Pro y Élite tienes asesoría directa con un coach.</p>
+      </details>
+    </section>
+  
+<section id="contacto" class="mt-24 text-center">
   <h2 class="text-3xl font-bold text-blue-400 mb-2">Contáctanos</h2>
   <p class="mb-6 text-sm text-pink-200">¿Tienes dudas, comentarios o quieres iniciar tu transformación? ¡Escríbenos!</p>
   <form id="contactForm" class="bg-gray-800 p-6 rounded-xl max-w-md mx-auto shadow-lg">
@@ -40,3 +172,43 @@
     });
   });
 </script>
+
+</main>
+
+  <footer class="mt-16 text-sm text-gray-400 border-t border-gray-700 pt-4 text-center">
+    <p>&copy; 2025 AlineaFit. Todos los derechos reservados.</p>
+    <p class="mt-1">Versión demo cargada desde GitHub Pages</p>
+    <div class="mt-2 space-x-4">
+      <a href="#" class="text-white hover:text-blue-400"><i class="fas fa-globe"></i></a>
+      <a href="#" class="text-white hover:text-pink-400"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="text-white hover:text-blue-600"><i class="fab fa-facebook"></i></a>
+      <a href="#" class="text-white hover:text-red-500"><i class="fab fa-youtube"></i></a>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5570869985" target="_blank" class="fixed bottom-5 right-5 z-50">
+    <img src="https://icongr.am/fontawesome/whatsapp.svg?size=48&color=25d366" alt="WhatsApp">
+  </a>
+
+  <script>
+    const carousel = document.getElementById('carousel');
+    let slideIndex = 0;
+    setInterval(() => {
+      slideIndex = (slideIndex + 1) % 2;
+      carousel.style.transform = `translateX(-${slideIndex * 100}%)`;
+    }, 4000);
+
+    const testis = document.querySelectorAll('#testimonios-carousel .testimonial');
+    let tIndex = 0;
+    setInterval(() => {
+      testis.forEach(t => t.classList.remove('active'));
+      testis[tIndex].classList.add('active');
+      tIndex = (tIndex + 1) % testis.length;
+    }, 5000);
+
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
