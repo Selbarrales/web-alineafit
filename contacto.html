@@ -1,18 +1,14 @@
 
 <section id="contacto" class="mt-12 text-center">
-  <h2 class="text-2xl font-semibold mb-2 text-blue-400">Contáctanos</h2>
-  <p class="mb-6">¿Tienes dudas, comentarios o quieres iniciar tu transformación? ¡Escríbenos!</p>
-  <form id="contactForm" class="bg-gray-800 p-6 rounded-lg max-w-xl mx-auto text-left shadow-lg">
-    <label class="block text-sm mb-2">Tu nombre</label>
-    <input type="text" name="nombre" placeholder="Nombre completo" required>
-    <label class="block text-sm mb-2 mt-4">Correo electrónico</label>
-    <input type="email" name="correo" placeholder="ejemplo@correo.com" required>
-    <label class="block text-sm mb-2 mt-4">Número de WhatsApp</label>
-    <input type="tel" name="whatsapp" placeholder="+52 1 55 0000 0000" required>
-    <label class="block text-sm mb-2 mt-4">Tu mensaje</label>
-    <textarea name="mensaje" rows="4" placeholder="Escríbenos tus comentarios o dudas..." required></textarea>
-    <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-2 px-4 mt-4 rounded hover:bg-blue-700 transition">Enviar</button>
-    <p id="formStatus" class="text-sm mt-4"></p>
+  <h2 class="text-3xl font-bold text-blue-400 mb-2">Contáctanos</h2>
+  <p class="mb-6 text-sm text-pink-200">¿Tienes dudas, comentarios o quieres iniciar tu transformación? ¡Escríbenos!</p>
+  <form id="contactForm" class="bg-gray-800 p-6 rounded-xl max-w-md mx-auto shadow-lg">
+    <input type="text" name="nombre" placeholder="Tu nombre" required class="w-full p-3 mb-4 rounded-lg bg-gray-700 text-white placeholder-gray-400">
+    <input type="email" name="correo" placeholder="Correo electrónico" required class="w-full p-3 mb-4 rounded-lg bg-gray-700 text-white placeholder-gray-400">
+    <input type="tel" name="whatsapp" placeholder="Número de WhatsApp" required class="w-full p-3 mb-4 rounded-lg bg-gray-700 text-white placeholder-gray-400">
+    <textarea name="mensaje" rows="4" placeholder="Tu mensaje" required class="w-full p-3 mb-4 rounded-lg bg-gray-700 text-white placeholder-gray-400"></textarea>
+    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition">Enviar</button>
+    <p id="formStatus" class="text-sm mt-4 text-center"></p>
   </form>
 </section>
 
@@ -35,10 +31,12 @@
     .then(res => res.json())
     .then(response => {
       document.getElementById('formStatus').textContent = "✅ ¡Gracias por escribirnos!";
+      document.getElementById('formStatus').className = "text-green-400 text-sm mt-4";
       form.reset();
     })
     .catch(error => {
       document.getElementById('formStatus').textContent = "❌ Hubo un error. Intenta de nuevo.";
+      document.getElementById('formStatus').className = "text-red-400 text-sm mt-4";
     });
   });
 </script>
