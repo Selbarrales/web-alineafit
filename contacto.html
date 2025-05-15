@@ -1,64 +1,73 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contáctanos - AlineaFit</title>
-  <link rel="icon" href="Logotipo-alineafit.png" type="image/png" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario AlineaFit</title>
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
-      background: #0D0D0D;
-      color: #FAFAFA;
-      padding: 2rem;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    form input, form textarea, form select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    form button {
+      width: 100%;
+      padding: 12px;
+      background: #3498db;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    form button:hover {
+      background: #2980b9;
+    }
+    img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
-  <header class="text-center mb-12">
-    <img src="Logotipo-alineafit.png" alt="AlineaFit Logo" class="mx-auto w-24 mb-4">
-    <h1 class="text-3xl font-bold text-blue-400">Contáctanos</h1>
-    <p class="text-sm text-pink-200">¿Tienes dudas, comentarios o quieres iniciar tu transformación? ¡Escríbenos!</p>
-  </header>
-
-  <main>
-    <form id="contactForm" class="bg-gray-800 p-6 rounded-xl max-w-md mx-auto shadow-lg">
-      <input type="text" name="nombre" placeholder="Tu nombre" required class="w-full p-3 mb-4 rounded-lg bg-gray-700 text-white placeholder-gray-400">
-      <input type="email" name="correo" placeholder="Correo electrónico" required class="w-full p-3 mb-4 rounded-lg bg-gray-700 text-white placeholder-gray-400">
-      <input type="tel" name="whatsapp" placeholder="Número de WhatsApp" required class="w-full p-3 mb-4 rounded-lg bg-gray-700 text-white placeholder-gray-400">
-      <textarea name="mensaje" rows="4" placeholder="Tu mensaje" required class="w-full p-3 mb-4 rounded-lg bg-gray-700 text-white placeholder-gray-400"></textarea>
-      <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition">Enviar</button>
-      <p id="formStatus" class="text-sm mt-4 text-center"></p>
+  <div class="container">
+    <img src="https://selbarrales.github.io/web-alineafit/assets/img/formulario.jpg" alt="AlineaFit">
+    <h1>Contáctanos</h1>
+    <form name="AlineaFitFormulario">
+      <input type="text" name="Nombre" placeholder="Nombre completo" required>
+      <input type="email" name="Correo electrónico" placeholder="Correo electrónico" required>
+      <input type="text" name="WhatsApp" placeholder="WhatsApp" required>
+      <input type="text" name="Objetivo" placeholder="¿Cuál es tu objetivo?">
+      <select name="Entrenas actualmente">
+        <option value="">¿Entrenas actualmente?</option>
+        <option value="Sí">Sí</option>
+        <option value="No">No</option>
+      </select>
+      <textarea name="¿En qué te puedo ayudar?" rows="4" placeholder="Cuéntanos en qué te podemos ayudar"></textarea>
+      <button type="submit">Enviar</button>
     </form>
-  </main>
-
-  <footer class="text-center text-gray-500 text-sm mt-12">
-    <p>&copy; 2025 AlineaFit. Todos los derechos reservados.</p>
-  </footer>
-
-  <script>
-    const form = document.getElementById('contactForm');
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const formData = new FormData(form);
-      fetch("https://script.google.com/macros/s/AKfycbyVz_gmZTnr0UsEn6R7iA1tOihkhWSsf7PDBqXYCS1UEUsWxqTt_mQ5jIRdt0nrUO4T/exec", {
-        method: 'POST',
-        body: formData
-      })
-      .then(res => res.json())
-      .then(response => {
-        document.getElementById('formStatus').textContent = "✅ ¡Formulario enviado con éxito! Gracias por confiar en AlineaFit 💪✨";
-        document.getElementById('formStatus').className = "text-green-400 text-sm mt-4";
-        form.reset();
-      })
-      .catch(error => {
-        document.getElementById('formStatus').textContent = "❌ Hubo un error. Intenta de nuevo.";
-        document.getElementById('formStatus').className = "text-red-400 text-sm mt-4";
-      });
-    });
-  </script>
+  </div>
 </body>
 </html>
