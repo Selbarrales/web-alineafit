@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulario AlineaFit</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto AlineaFit</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -23,7 +23,7 @@
       text-align: center;
       color: #2c3e50;
     }
-    form input, form textarea, form select {
+    input, textarea, select {
       width: 100%;
       padding: 10px;
       margin-top: 10px;
@@ -31,7 +31,7 @@
       border-radius: 5px;
       border: 1px solid #ccc;
     }
-    form button {
+    button {
       width: 100%;
       padding: 12px;
       background: #3498db;
@@ -41,61 +41,85 @@
       border-radius: 5px;
       cursor: pointer;
     }
-    form button:hover {
+    button:hover {
       background: #2980b9;
-    }
-    img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="https://selbarrales.github.io/web-alineafit/assets/img/formulario.jpg" alt="AlineaFit">
     <h1>Contáctanos</h1>
-    <form name="AlineaFitFormulario">
-      <input type="text" name="Nombre" placeholder="Nombre completo" required>
-      <input type="email" name="Correo electrónico" placeholder="Correo electrónico" required>
-      <input type="text" name="WhatsApp" placeholder="WhatsApp" required>
-      <input type="text" name="Objetivo" placeholder="¿Cuál es tu objetivo?">
-      <select name="Entrenas actualmente">
+    <form id="formularioAlineaFit">
+      <input type="text" name="Nombre" placeholder="Nombre completo" required />
+      <input type="email" name="Correo" placeholder="Correo electrónico" required />
+      <input type="text" name="WhatsApp" placeholder="WhatsApp" required />
+      <input type="text" name="Objetivo" placeholder="¿Cuál es tu objetivo?" />
+      <select name="Entrenas">
         <option value="">¿Entrenas actualmente?</option>
         <option value="Sí">Sí</option>
         <option value="No">No</option>
       </select>
-      <textarea name="¿En qué te puedo ayudar?" rows="4" placeholder="Cuéntanos en qué te podemos ayudar"></textarea>
+      <textarea name="Ayuda" rows="4" placeholder="¿En qué te podemos ayudar?"></textarea>
       <button type="submit">Enviar</button>
+      <p id="mensaje" style="text-align:center; color: green; font-weight: bold; display: none;">✅ Datos guardados correctamente</p>
     </form>
   </div>
-  <script>
-    document.querySelector("form").addEventListener("submit", function (e) {
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.8.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAOCrQxywICDfH1wMsiszIKCm-Kr5Mll7c",
+      authDomain: "alineafit-21789.firebaseapp.com",
+      projectId: "alineafit-21789",
+      storageBucket: "alineafit-21789.appspot.com",
+      messagingSenderId: "786319205940",
+      appId: "1:786319205940:web:73b935d757344632f98c61",
+      measurementId: "G-4Z959MV131"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const formulario = document.getElementById("formularioAlineaFit");
+    const mensaje = document.getElementById("mensaje");
+
+    formulario.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const form = e.target;
-      const data = {};
 
-      Array.from(form.elements).forEach(el => {
-        if (el.name) data[el.name] = el.value;
-      });
+      const datos = {
+        nombre: formulario.Nombre.value,
+        correo: formulario.Correo.value,
+        whatsapp: formulario.WhatsApp.value,
+        objetivo: formulario.Objetivo.value,
+        entrenas: formulario.Entrenas.value,
+        ayuda: formulario.Ayuda.value,
+        timestamp: new Date()
+      };
 
-      fetch("https://script.google.com/macros/s/AKfycbzWSoA3hPRtf53tA3DJqB6oUQslIvAq4dypoKG4Ikrx3F7FvYR2Q9dDfK-FsZp1XCYmGw/exec", {
-        method: "POST",
-        mode: "no-cors",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-      .then(() => {
-        alert("✅ Datos enviados correctamente");
-        form.reset();
+      try {
+        // 1. Guardar en Firebase
+        await addDoc(collection(db, "contactos"), datos);
+
+        // 2. Enviar a Google Sheets
+        await fetch("https://script.google.com/macros/s/AKfycbzWSoA3hPRtf53tA3DJqB6oUQslIvAq4dypoKG4Ikrx3F7FvYR2Q9dDfK-FsZp1XCYmGw/exec", {
+          method: "POST",
+          mode: "no-cors",
+          body: JSON.stringify(datos),
+          headers: { "Content-Type": "application/json" }
+        });
+
+        // Mostrar mensaje
+        mensaje.style.display = "block";
+        formulario.reset();
+        setTimeout(() => mensaje.style.display = "none", 5000);
         window.scrollTo({ top: 0, behavior: "smooth" });
-      })
-      .catch(error => {
-        console.error("Error:", error);
-        alert("❌ Ocurrió un error al enviar.");
-      });
+      } catch (err) {
+        alert("❌ Error al guardar los datos.");
+        console.error(err);
+      }
     });
   </script>
 </body>
